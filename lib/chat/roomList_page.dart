@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:gitclone/chat/addRoom_page.dart';
-import 'package:gitclone/chat/chat_page.dart';
-import 'package:gitclone/chat/room_info.dart';
+import 'package:qanvas/chat/addRoom_page.dart';
+import 'package:qanvas/chat/chat_page.dart';
+import 'package:qanvas/chat/room_info.dart';
 
 class RoomListPage extends StatelessWidget {
   // 引数からユーザー情報を受け取れるようにする
@@ -41,7 +41,7 @@ class RoomListPage extends StatelessWidget {
                                 await Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return TabsExample();
+                                      return Roominfo();
                                     },
                                   ),
                                 );

@@ -17,15 +17,15 @@ import 'package:flutter/material.dart';
 
 
 
-class ChatPage extends StatefulWidget {
-  const ChatPage(this.name, {Key? key}) : super(key: key);
+class ChatScreen extends StatefulWidget {
+  const ChatScreen(this.name, {Key? key}) : super(key: key);
 
   final String name;
   @override
   _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends State<ChatScreen> {
   List<types.Message> _messages = [];
   String randomId = Uuid().v4();
   final _user = const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66', firstName: '名前');
@@ -105,26 +105,33 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    final focusNode = FocusNode();
 
-    return Scaffold(
+    return Focus(
+      focusNode: focusNode,
+      child: GestureDetector(
+        onTap: focusNode.requestFocus,
+        child: Scaffold(
 
-      body: Chat(
-        theme: const DefaultChatTheme(
-          // メッセージ入力欄の色
-          inputBackgroundColor: Colors.blue,
-          // 送信ボタン
-          sendButtonIcon: Icon(Icons.send),
-          sendingIcon: Icon(Icons.update_outlined),
+          body: Chat(
+            theme: const DefaultChatTheme(
+              // メッセージ入力欄の色
+              inputBackgroundColor: Colors.blue,
+              // 送信ボタン
+              sendButtonIcon: Icon(Icons.send),
+              sendingIcon: Icon(Icons.update_outlined),
+            ),
+            // ユーザーの名前を表示するかどうか
+            showUserNames: true,
+
+            // メッセージの配列
+            messages: _messages,
+            onPreviewDataFetched: _handlePreviewDataFetched,
+            onSendPressed: _handleSendPressed,
+            user: _user,
+          ),
         ),
-        // ユーザーの名前を表示するかどうか
-        showUserNames: true,
-
-        // メッセージの配列
-        messages: _messages,
-        onPreviewDataFetched: _handlePreviewDataFetched,
-        onSendPressed: _handleSendPressed,
-        user: _user,
-      ),
+      )
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 //クラスインポート
 import 'package:qanvas/screens/search_screen.dart';
-import 'package:qanvas/screens/chat_screen.dart';
+import 'package:qanvas/chat/roomList_page.dart';
 import 'package:qanvas/screens/notification_screen.dart';
 import 'package:qanvas/screens/note_screen.dart';
 
@@ -29,7 +29,7 @@ class BottomRoute extends HookConsumerWidget{
     //ページリスト
     final _ScreenList = [
       const SearchScreen(),
-      const ChatScreen(),
+      RoomListPage(),
       const NotificationScreen(),
       const NoteScreen(),
     ];
